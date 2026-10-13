@@ -195,14 +195,6 @@
     }
   }
   document.getElementById('celebrate').addEventListener('click',confetti);
-  document.getElementById('secretToggle').addEventListener('click',()=>{
-    const note=document.getElementById('secretNote');
-    const opening=note.hidden;
-    note.hidden=!opening;
-    document.getElementById('secretToggle').textContent=opening?'Close your secret note ♡':'There\'s one tiny secret note… 💌';
-    document.getElementById('secretToggle').setAttribute('aria-expanded',String(opening));
-    if(opening) note.scrollIntoView({behavior:'smooth',block:'center'});
-  });
   document.getElementById('secretReveal').addEventListener('click',()=>{
     const box=document.getElementById('secretMessage');
     box.style.display='block';
