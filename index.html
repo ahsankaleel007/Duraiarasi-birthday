@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#17142b">
+<title>A Little Universe for Duraiarasi ✨</title>
+<style>
+  :root {
+    --night:#17142b; --plum:#322346; --rose:#f4b9cb; --cream:#fff5e8;
+    --lavender:#d9c7ff; --ink:#30253a; --muted:#726579;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:Georgia,'Times New Roman',serif;background:var(--night);color:var(--cream);min-height:100vh;overflow-x:hidden}
+  button{font:inherit;cursor:pointer}
+  .stars,.stars:before,.stars:after{position:fixed;inset:0;pointer-events:none;content:"";background-image:
+    radial-gradient(2px 2px at 20px 30px,#fff,transparent 60%),radial-gradient(1px 1px at 80px 120px,#f4b9cb,transparent 60%),
+    radial-gradient(2px 2px at 160px 80px,#fff,transparent 60%),radial-gradient(1px 1px at 240px 180px,#d9c7ff,transparent 60%),
+    radial-gradient(1px 1px at 300px 40px,#fff,transparent 60%);background-size:330px 220px;opacity:.55;z-index:0}
+  .stars:before{transform:translateY(110px);opacity:.45}.stars:after{transform:translate(60px,40px);opacity:.3}
+  .glow{position:fixed;width:300px;height:300px;border-radius:50%;filter:blur(90px);opacity:.2;pointer-events:none;z-index:0}
+  .g1{background:#9a65ff;top:8%;left:-130px}.g2{background:#ff8fb6;bottom:0;right:-130px}
+  main{position:relative;z-index:1;width:min(760px,100%);margin:auto;padding:26px 18px 60px}
+  .topline{text-align:center;text-transform:uppercase;letter-spacing:.22em;font:11px Arial,sans-serif;color:#d9c7ff;margin:12px 0 34px}
+  .hero{text-align:center;min-height:72vh;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .eyebrow{font:12px Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--rose);margin-bottom:15px}
+  h1{font-weight:normal;font-size:clamp(2.5rem,9vw,5rem);line-height:1.02;margin:0;letter-spacing:-.04em}
+  h1 em{font-weight:normal;color:var(--rose)}
+  .subtitle{max-width:440px;line-height:1.8;color:#e7dced;font-size:1.06rem;margin:22px auto 26px}
+  .envelope-wrap{margin:12px 0 22px;perspective:900px}
+  .envelope{position:relative;width:180px;height:120px;border:0;background:transparent;filter:drop-shadow(0 14px 24px #0006);transition:transform .3s}
+  .envelope:hover{transform:translateY(-5px) rotate(-2deg)}
+  .env-back{position:absolute;inset:0;background:#dca5c1;border-radius:7px}
+  .env-paper{position:absolute;left:13px;right:13px;bottom:10px;height:85px;background:#fff4e6;border-radius:4px;transition:transform .7s;display:flex;align-items:center;justify-content:center;color:#5a3a59;font-size:26px}
+  .env-front{position:absolute;inset:0;background:#f1b8cd;clip-path:polygon(0 0,50% 55%,100% 0,100% 100%,0 100%);border-radius:7px}
+  .env-flap{position:absolute;inset:0;background:#f8d1df;clip-path:polygon(0 0,100% 0,50% 58%);transform-origin:top;transition:transform .6s;z-index:2}
+  .seal{position:absolute;z-index:3;left:calc(50% - 16px);top:48px;width:32px;height:32px;border-radius:50%;background:#a35a84;color:white;display:grid;place-items:center;font-size:16px}
+  .envelope.open .env-flap{transform:rotateX(180deg);z-index:0}
+  .envelope.open .env-paper{transform:translateY(-58px)}
+  .smallhint{font:12px Arial,sans-serif;color:#cbbdd7;letter-spacing:.06em}
+  .btn{border:1px solid #dcb8e8;background:linear-gradient(135deg,#f2bfd1,#d9c7ff);color:#291d37;padding:13px 22px;border-radius:999px;font:600 13px Arial,sans-serif;letter-spacing:.04em;box-shadow:0 8px 28px #0003;transition:transform .2s}
+  .btn:hover{transform:translateY(-2px)}
+  .section{display:none;animation:fadeIn .7s ease both;padding:36px 0}
+  .section.show{display:block}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+  .card{background:linear-gradient(145deg,#fff8ee,#f8e8f0);color:var(--ink);border-radius:22px;padding:clamp(24px,6vw,42px);box-shadow:0 18px 50px #0003;position:relative;overflow:hidden}
+  .card:before{content:"✦";position:absolute;right:22px;top:14px;font-size:30px;color:#e7b6cc;opacity:.8}
+  .card-label{font:11px Arial,sans-serif;text-transform:uppercase;letter-spacing:.18em;color:#9a6485;margin-bottom:18px}
+  h2{font-size:clamp(1.8rem,6vw,2.8rem);font-weight:normal;line-height:1.15;margin:0 0 18px}
+  .card p{font-size:1.05rem;line-height:1.9;margin:0 0 14px}
+  .signature{font-style:italic;color:#875b7b;margin-top:25px}
+  .memory-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:22px 0}
+  .memory{border:1px solid #ead5e5;border-radius:16px;padding:19px 16px;background:#fffdf9;min-height:115px}
+  .memory .icon{font-size:23px;display:block;margin-bottom:10px}
+  .memory strong{display:block;font-size:1rem;font-weight:normal;margin-bottom:6px}
+  .memory span{font:12px/1.5 Arial,sans-serif;color:#78697a}
+  .note{font:12px/1.6 Arial,sans-serif;color:#756779;background:#f7edf5;border-radius:12px;padding:12px 14px;margin-top:15px}
+  .photo-area{display:none;margin:18px auto 0;max-width:250px}
+  .photo-area img{width:100%;max-height:300px;object-fit:cover;border-radius:18px;border:5px solid #fff;box-shadow:0 10px 30px #0002}
+  .photo-label{font:11px Arial,sans-serif;color:#8a6b82;margin:10px}
+  .photo-input{display:none}
+  .photo-btn{display:inline-block;margin-top:12px;border:1px dashed #b48ba9;color:#7c5275;background:#fff9fd;border-radius:999px;padding:10px 15px;font:12px Arial,sans-serif}
+  .cake-scene{text-align:center;padding:20px 0 10px}
+  .cake{font-size:clamp(5rem,18vw,8rem);display:inline-block;animation:bob 2.5s ease-in-out infinite;filter:drop-shadow(0 10px 22px #ffb5cf33)}
+  @keyframes bob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-10px) rotate(2deg)}}
+  .final-title{font-size:clamp(2.4rem,8vw,4.2rem);color:#a35a84;text-align:center;margin:10px 0 20px}
+  .final-message{text-align:center}
+  .final-message p{max-width:520px;margin:0 auto 16px}
+  .heartline{text-align:center;font-size:22px;letter-spacing:.4em;color:#c47da2;margin:22px 0}
+  .navrow{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:25px}
+  .secondary{background:transparent;border:1px solid #c9b0d6;color:#f5e9fa;box-shadow:none}
+  .footer{text-align:center;font:11px Arial,sans-serif;letter-spacing:.08em;color:#a99ab7;margin-top:40px}
+  .confetti{position:fixed;top:-20px;width:8px;height:12px;z-index:10;pointer-events:none;animation:fall 3.5s linear forwards}
+  @keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
+  @media(max-width:440px){.memory-grid{grid-template-columns:1fr}.hero{min-height:78vh}.card{border-radius:18px}}
+</style>
+</head>
+<body>
+<div class="stars"></div><div class="glow g1"></div><div class="glow g2"></div>
+<main>
+  <div class="topline">a tiny birthday universe ✦ made just for Duraiarasi</div>
+  <section class="hero" id="hero">
+    <div class="eyebrow">14 OCTOBER · YOUR LITTLE CELEBRATION</div>
+    <h1>For <em>Duraiarasi,</em><br>with love.</h1>
+    <p class="subtitle">A tiny corner of the internet made just for you—with childhood nostalgia, soft little details, a bit of silliness, and lots of care. Take your time. Today, this little universe is yours. ♡</p>
+    <div class="envelope-wrap">
+      <button class="envelope" id="envelope" aria-label="Open your birthday letter">
+        <div class="env-back"></div><div class="env-paper">For you ♡</div><div class="env-front"></div><div class="env-flap"></div><div class="seal">✦</div>
+      </button>
+    </div>
+    <div class="smallhint">TAP THE ENVELOPE, GORGEOUS ❤️</div>
+    <div style="margin-top:22px"><button class="btn" id="begin">Open your surprise, Duraiarasi ✨</button></div>
+  </section>
+
+  <section class="section" id="letter">
+    <div class="card">
+      <div class="card-label">01 · a letter, just for you</div>
+      <h2>Hey, gorgeous ❤️</h2>
+      <p><strong>Happy many more returns of the day! 😁🎂</strong></p>
+      <p>It's hard to believe how fast time flies. ✈️ We studied together for years, shared laughter, secrets, school chaos, random talks, and memorable little moments (like the time I bought you a chocolate). 🍫 Those memories are the kind that never really fade.</p>
+      <p>And then, somehow, life drifted in different directions. 😔 But I don't think that means the connection we had simply disappeared. Even after all these years, you still cross my mind more often than you probably think. It's true. 😉</p>
+      <p>It feels strange, but beautiful, to know that you still remember me—and identify me by my hair and head. 🤣 I remember those little things about you, too: your dazzling smile, your pretty way of talking, the energy you carry around, your laugh, and your caring words. You have this way of brightening a dull day without even trying. ☺️❤️</p>
+      <p>And honestly, I don't have enough words for how much you've helped me. You were there for me when I was at my lowest. You knew so much about me, and the care you showed me meant more than I could properly explain at the time. Those moments haven't faded from my memory. Not even a little. 💗</p>
+      <p>Some people leave an impression that time can't erase—and you, my gorgeous, are one of those rare few. 💟 Whenever I felt lonely, you were there for me. Some of the kind words you gave me helped me get through days that felt difficult, and I'll always be grateful for that.</p>
+      <p>So, on your special day, I want to wish you a very, very happy birthday! 🎂🎉 I hope your day is filled with people who adore you, surprises that make you blush, laughter that makes your cheeks hurt, and little moments that remind you how special you are. You truly deserve that kind of happiness. Every bit of it.</p>
+      <p>And maybe this is a little selfish, but I hope that when you read this, even for a second, you think of the old times—of me—and smile. 🥹</p>
+      <p>I hope that among all the birthday wishes you receive, mine stands out—not because it's a whole lot of words, but because every word comes from a place of genuine care, and because thinking of you still brings a smile to my face. ❤️</p>
+      <p>I hope your day is as beautiful and charming as you've always been to me. And I wish we could travel through time and relive one of those old days together. Maybe someday soon, we'll get to make a few new memories of our own, too. ✨</p>
+      <p>So here's to you, gorgeous. ❤️ The girl who made my childhood brighter, who stood by me when I was at my lowest, and who still holds a special place in my story after all these years.</p>
+      <p><strong>A very, very happy birthday to you, my dear Duraiarasi. ❤️🎂</strong></p>
+      <p class="signature">With lots of love and care, always. ♡</p>
+      <div class="navrow"><button class="btn" data-next="memories">There's one more thing… →</button></div>
+    </div>
+  </section>
+
+  <section class="section" id="memories">
+    <div class="card">
+      <div class="card-label">02 · little things that stay</div>
+      <h2>Funny how some memories never grow old.</h2>
+      <p>We don't need a photo together to prove those days happened. Some memories live in little details: the school days, the random conversations, the laughter, the chocolate, and the fact that even now, after all this time, we still remember each other in our own little ways.</p>
+      <div class="memory-grid">
+        <div class="memory"><span class="icon">🍫</span><strong>The chocolate incident</strong><span>Proof that even the smallest moments can become the ones we remember. 😂</span></div>
+        <div class="memory"><span class="icon">📚</span><strong>School-day chaos</strong><span>All those ordinary days that somehow became precious memories.</span></div>
+        <div class="memory"><span class="icon">☺️</span><strong>Your familiar smile</strong><span>Some things are easy to remember, even when years have passed.</span></div>
+        <div class="memory"><span class="icon">❤️</span><strong>The care you showed</strong><span>The words and little acts of kindness that meant more than you knew.</span></div>
+      </div>
+      <p>Maybe that's one of the loveliest things about growing up: life changes, we change, but some people remain connected to a part of us that time can't quite reach.</p>
+      <div class="navrow"><button class="btn" data-next="wishes">A few wishes for you →</button><button class="btn secondary" data-back="letter">← Back to the letter</button></div>
+    </div>
+  </section>
+
+  <section class="section" id="wishes">
+    <div class="card">
+      <div class="card-label">03 · a few wishes for your next chapter</div>
+      <h2>If I could wrap a few things up and give them to you…</h2>
+      <div class="memory-grid">
+        <div class="memory"><span class="icon">🌻</span><strong>More joy</strong><span>The kind that arrives on an ordinary day and stays longer than expected.</span></div>
+        <div class="memory"><span class="icon">🫶</span><strong>Good people</strong><span>People who make you feel safe being exactly who you are.</span></div>
+        <div class="memory"><span class="icon">🌙</span><strong>Gentle days</strong><span>Less pressure to have everything figured out, and more room to breathe.</span></div>
+        <div class="memory"><span class="icon">✨</span><strong>Beautiful surprises</strong><span>New places, lovely memories, and dreams that slowly become real.</span></div>
+      </div>
+      <p>And please remember: you don't have to make every day extraordinary. I hope you find happiness in the tiny things, too—in your favourite songs, late-night laughs, good food, and moments when you realise you're doing better than you thought.</p>
+      <div class="navrow"><button class="btn" data-next="final">One last thing… ♡</button><button class="btn secondary" data-back="memories">← Back</button></div>
+    </div>
+  </section>
+
+  <section class="section" id="final">
+    <div class="card final-message">
+      <div class="card-label">04 · just between us</div>
+      <div class="cake-scene"><div class="cake">🎂</div></div>
+      <h2 class="final-title">Happy Birthday, gorgeous! ❤️</h2>
+      <p>I'm really glad our paths crossed when they did. No matter how much life changes, I hope this new year brings you closer to the things that make you feel alive, understood, and happy.</p>
+      <p>Keep being your lovely self. Keep laughing, dreaming, growing, and making your little corner of the world brighter just by being in it.</p>
+      <p>Here's to another year of your life—and to all the beautiful stories you haven't lived yet. You deserve so many good things. 🌷</p>
+      <div class="heartline">♡ ✦ ♡ ✦ ♡</div>
+      <button class="btn" id="secretReveal">There's a little secret message for you… 💌</button>
+      <div id="secretMessage" style="display:none;text-align:left;margin-top:24px;padding:22px;border:1px solid #e7c5d8;border-radius:16px;background:#fffaf6">
+        <div class="card-label">one last thing</div>
+        <p>Duraiarasi, no matter how many birthdays pass or how much life changes, I'll always be thankful that I got to know you when I did. You made parts of my childhood brighter, and your kindness stayed with me long after those school days.</p>
+        <p>I hope you never forget how loved, valued, and deserving of happiness you are. And I hope that somewhere in all the memories you carry, there's a little space for the silly boy who still remembers the chocolate, your smile, and the way you were there when he needed someone. ❤️</p>
+        <p><strong>Happy birthday once again, gorgeous. Here's to making more memories. 🥹❤️</strong></p>
+      </div>
+      <div class="navrow"><button class="btn" id="celebrate">Celebrate again 🎉</button><button class="btn secondary" id="restart">Read it again ↺</button></div>
+    </div>
+  </section>
+  <div class="footer">A LITTLE UNIVERSE FOR DURAIARASI · OCTOBER 14 · MADE WITH ♡</div>
+</main>
+<script>
+  const sections = ['letter','memories','wishes','final'];
+  const envelope = document.getElementById('envelope');
+  function showSection(id){
+    document.getElementById('hero').style.display='none';
+    sections.forEach(s=>document.getElementById(s).classList.toggle('show',s===id));
+    window.scrollTo({top:0,behavior:'smooth'});
+    if(id==='final') confetti();
+  }
+  function start(){envelope.classList.add('open');setTimeout(()=>showSection('letter'),450)}
+  envelope.addEventListener('click',start);
+  document.getElementById('begin').addEventListener('click',start);
+  document.querySelectorAll('[data-next]').forEach(b=>b.addEventListener('click',()=>showSection(b.dataset.next)));
+  document.querySelectorAll('[data-back]').forEach(b=>b.addEventListener('click',()=>showSection(b.dataset.back)));
+  document.getElementById('restart').addEventListener('click',()=>{
+    sections.forEach(s=>document.getElementById(s).classList.remove('show'));
+    document.getElementById('hero').style.display='flex';
+    envelope.classList.remove('open');window.scrollTo({top:0,behavior:'smooth'});
+  });
+  function confetti(){
+    for(let i=0;i<65;i++){
+      const c=document.createElement('i');c.className='confetti';
+      c.style.left=Math.random()*100+'vw';c.style.animationDelay=Math.random()*1.3+'s';
+      c.style.background=['#f4b9cb','#d9c7ff','#ffe29a','#fff5e8','#a7e8d4'][Math.floor(Math.random()*5)];
+      c.style.transform='rotate('+Math.random()*360+'deg)';
+      document.body.appendChild(c);setTimeout(()=>c.remove(),5000);
+    }
+  }
+  document.getElementById('celebrate').addEventListener('click',confetti);
+  document.getElementById('secretToggle').addEventListener('click',()=>{
+    const note=document.getElementById('secretNote');
+    const opening=note.hidden;
+    note.hidden=!opening;
+    document.getElementById('secretToggle').textContent=opening?'Close your secret note ♡':'There\'s one tiny secret note… 💌';
+    document.getElementById('secretToggle').setAttribute('aria-expanded',String(opening));
+    if(opening) note.scrollIntoView({behavior:'smooth',block:'center'});
+  });
+  document.getElementById('secretReveal').addEventListener('click',()=>{
+    const box=document.getElementById('secretMessage');
+    box.style.display='block';
+    document.getElementById('secretReveal').style.display='none';
+    confetti();
+  });
+</script>
+</body>
+</html>
